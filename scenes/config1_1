@@ -1,0 +1,35 @@
+light {
+pos: 0,10,-10;
+type: 0;
+int: 123;
+type: 0;
+}
+
+obj {
+	sphere {
+		pos: 40,0,0;
+		trs: 0,0,0;
+		rad: 10;
+		col: 255,0,0;
+	}
+	plane {
+		pos: 0,11,0;
+		 trs: 0,0,0;
+		 rot: 0,0,0;
+		 nor: 0,1,0;
+		 col: 0,0,255;
+	}
+	cone {
+		pos: 0,0,0;
+		trs: 0,0,0;
+		rot: 0,0,0;
+		ang: 1;
+		dir: 0,1,0;
+		col: 255,255,0;
+	}
+}
+cam {
+	pos: 0,0,-200;
+	rot: 0,0,0;
+	trs: 0,0,0;
+}

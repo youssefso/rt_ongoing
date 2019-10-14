@@ -1,0 +1,32 @@
+x: --->
+y: ||
+   ||
+   \/
+z: o 
+///////////////////////////////////////////////////////////////////////////////
+
+main => ft_rt_init 	   => | bake_ray
+						  | send_ray => | ray_cone					o
+										| ray_sphere				o
+										| ray_plane					o
+										| ray_cylinder				o
+
+if hits. 
+	light effects;
+				/ type of light :    / spot light					x
+									 / area light 					x
+									 / directionnel					x
+	texture															x
+
+/////////////////////////////////////////////////////////////////////////////////
+
+#functions found in raytrace directory in files that hold the same function name
+
+@ ft_rt_init : loop on all pixels
+@ bake_ray  : make a ray to send based on widow pixel
+@ send_ray  : loop on all object with that ray
+@ ray_{obj} : check intersection ray with obj
+			: take closest object info => obj
+
+
+obj_normal hit_light_vec, col

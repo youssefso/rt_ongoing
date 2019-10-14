@@ -1,0 +1,61 @@
+#include "rtv1.h"
+
+static float	ft_sq(float a)
+{
+	return (a * a);
+}
+
+// t_var contain float variable only
+float	ray_cone_close(t_obj obj, const t_ray ray, float *distance, t_init *mlx)
+{
+	t_var	v;
+	t_vect	x;
+	float tmp;
+	float k;
+
+	k = 1 + ft_sq(obj.dif);
+	x = ft_vec_sub(ray.pos, obj.pos);
+	obj.hit_dist = k;
+	v.a = ft_vec_dot(ray.dir,ray.dir) - (k * ft_sq(ft_vec_dot(ray.dir, obj.dir)));
+	v.b = 2 * (ft_vec_dot(ray.dir, x) - (k * ft_vec_dot(ray.dir, obj.dir) * ft_vec_dot(x, obj.dir)));
+	v.c = ft_vec_dot(x, x) - (k * ft_sq(ft_vec_dot(x, obj.dir)));
+	v.d = v.b * v.b - (4 * v.a * v.c);
+	if (v.d < 0)
+		return 0;
+	v.t1 = (-v.b - sqrtf(v.d)) / (2 * v.a);
+	v.t2 = (-v.b + sqrtf(v.d)) / (2 * v.a);
+	tmp = ft_fmin_positive(v.t1, v.t2);// this fuction return min value or 0 if no positive number is given;
+	if (tmp < *distance && tmp > 0)
+	{
+		*distance = tmp;
+		return 1;
+	}
+	return 0;
+}
+float	ray_cone(t_obj obj, const t_ray ray, float *distance, t_init *mlx)
+{
+	t_var	v;
+	t_vect	x;
+	float tmp;
+	float k;
+
+	k = 1 + ft_sq(obj.dif);
+	x = ft_vec_sub(ray.pos, obj.pos);
+	obj.hit_dist = k;
+	v.a = ft_vec_dot(ray.dir,ray.dir) - (k * ft_sq(ft_vec_dot(ray.dir, obj.dir)));
+	v.b = 2 * (ft_vec_dot(ray.dir, x) - (k * ft_vec_dot(ray.dir, obj.dir) * ft_vec_dot(x, obj.dir)));
+	v.c = ft_vec_dot(x, x) - (k * ft_sq(ft_vec_dot(x, obj.dir)));
+	v.d = v.b * v.b - (4 * v.a * v.c);
+	if (v.d < 0)
+		return 0;
+	v.t1 = (-v.b - sqrtf(v.d)) / (2 * v.a);
+	v.t2 = (-v.b + sqrtf(v.d)) / (2 * v.a);
+	tmp = ft_fmin_positive(v.t1, v.t2);// this fuction return min value or 0 if no positive number is given;
+	if (tmp < *distance && tmp > 0)
+	{
+		mlx->m = ft_vec_dot(ray.dir, obj.dir) * tmp + ft_vec_dot(x, obj.dir);
+		*distance = tmp;
+		return 1;
+	}
+	return 0;
+}
