@@ -31,7 +31,7 @@ void	ft_rot_objects(t_obj *obj)
 	o = obj;
 	while (o)
 	{
-		if (o->type == cylinder || o->type == cone || o->type == torus)
+		if (o->type == cylinder || o->type == cone || o->type == torus || o->type == paraboloid)
 		{
 			o->dir = ft_rot(o->dir, o->rot);
 		}

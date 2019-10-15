@@ -6,7 +6,7 @@
 /*   By: nhamid <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 15:32:17 by nhamid            #+#    #+#             */
-/*   Updated: 2019/10/14 15:56:05 by ymoukhli         ###   ########.fr       */
+/*   Updated: 2019/10/15 18:06:26 by ymoukhli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct	s_ray
 	float	dir_mod;
 }				t_ray;
 
-enum {sphere = 0, cone, cylinder, plane, torus};
+enum {sphere = 0, cone, cylinder, plane, torus, ellipsoid, paraboloid};
 enum {trs = 1, rt, dir, col, pos, nor};
 enum {spote = 0, directionnel, area};
 typedef struct	s_cam
@@ -111,6 +111,13 @@ typedef struct	s_config
 	t_vect	baked_ray;
 }				t_config;
 
+typedef struct	s_matrix
+{
+	t_vect	r1;
+	t_vect	r2;
+	t_vect	r3;
+}				t_matrix;
+
 typedef struct	s_init
 {
 	void			*mlx;
@@ -128,7 +135,14 @@ typedef struct	s_init
 	float			m;
 }				t_init;
 
+t_vect			normal_paraboloid(const t_obj obj, const t_vect hit_point, t_init mlx);
+float			light_ray_paraboloid(t_obj obj, const t_ray ry);
+float			ray_paraboloid(t_obj obj, const t_ray ray, float *distance, t_init *mlx);
+t_vect			normal_ellipsoid(const t_obj obj, const t_vect hit_point, t_init mlx);
+float			light_ray_ellipsoid(t_obj obj, const t_ray ry);
+t_vect			ft_matrix_mult(t_matrix m, t_vect v);
 void			ft_pvect(char *str, t_vect v);
+float			ray_ellipsoid(t_obj obj, const t_ray ray, float *distance, t_init *mlx);
 float			ray_cylinder_close(t_obj obj, const t_ray ray, float *distance, t_init *mlx);
 float			ray_cone_close(t_obj obj, const t_ray ray, float *distance, t_init *mlx);
 t_ray			ft_rot_obj(t_obj obj, t_ray ray);

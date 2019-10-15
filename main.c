@@ -8,7 +8,7 @@ int closest_obj(t_config p, t_init mlx, int x, int y)
     int obj_id;
 	t_vect col;
 	float distance = INFINIT;
-	float (*pf[5])(t_obj, const t_ray, float *, t_init *) = {ray_sphere, ray_cone_close, ray_cylinder_close, ray_plane, ray_torus};
+	float (*pf[7])(t_obj, const t_ray, float *, t_init *) = {ray_sphere, ray_cone_close, ray_cylinder_close, ray_plane, ray_torus, ray_ellipsoid, ray_paraboloid};
 
 	ray.dir = bake_ray(x, y, p.scene);
 	ray.pos = p.scene.cam_pos;
