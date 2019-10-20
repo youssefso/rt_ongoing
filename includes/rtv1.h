@@ -6,7 +6,7 @@
 /*   By: nhamid <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 15:32:17 by nhamid            #+#    #+#             */
-/*   Updated: 2019/10/15 18:06:26 by ymoukhli         ###   ########.fr       */
+/*   Updated: 2019/10/16 14:23:53 by ymoukhli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct	s_ray
 	float	dir_mod;
 }				t_ray;
 
-enum {sphere = 0, cone, cylinder, plane, torus, ellipsoid, paraboloid};
+enum {sphere = 0, cone, cylinder, plane, torus, ellipsoid, paraboloid, hyperboloid};
 enum {trs = 1, rt, dir, col, pos, nor};
 enum {spote = 0, directionnel, area};
 typedef struct	s_cam
@@ -135,6 +135,9 @@ typedef struct	s_init
 	float			m;
 }				t_init;
 
+t_vect			normal_hyperboloid(const t_obj obj, const t_vect hit_point, t_init mlx);
+float			light_ray_hyperboloid(const t_obj obj, const t_ray ray);
+float			ray_hyperboloid(t_obj obj, const t_ray ray, float *distance, t_init *mlx);
 t_vect			normal_paraboloid(const t_obj obj, const t_vect hit_point, t_init mlx);
 float			light_ray_paraboloid(t_obj obj, const t_ray ry);
 float			ray_paraboloid(t_obj obj, const t_ray ray, float *distance, t_init *mlx);

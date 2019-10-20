@@ -6,7 +6,7 @@
 /*   By: ymoukhli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 12:10:39 by ymoukhli          #+#    #+#             */
-/*   Updated: 2019/10/15 18:17:05 by ymoukhli         ###   ########.fr       */
+/*   Updated: 2019/10/16 13:33:47 by ymoukhli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int		ft_obj_check(char *str_file)
 			!ft_strstr(obj_str, "cone {") &&
 			!ft_strstr(obj_str, "ellipsoid {") &&
 			!ft_strstr(obj_str, "paraboloid {") &&
+			!ft_strstr(obj_str, "hyperboloid {") &&
 			!ft_strstr(obj_str, "torus {"))
 		return (ft_error(&obj_str, 6));
 	return (ft_check_objects(obj_str));

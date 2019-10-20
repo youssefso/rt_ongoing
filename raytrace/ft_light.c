@@ -6,7 +6,8 @@ float	ft_light_spot(t_obj obj, t_config p, t_vect hit_point, t_ray *ray, t_init 
 	t_sce scene = p.scene;
 	t_vect	normal;
 	t_vect	light_hit_vec;// vector from hit point to light point
-	t_vect	(*pf[7])(const t_obj, const t_vect, t_init) = {normal_sphere, normal_cone, normal_cylinder, normal_plane, normal_torus, normal_ellipsoid, normal_paraboloid};
+	t_vect	(*pf[8])(const t_obj, const t_vect, t_init) = {normal_sphere, normal_cone, normal_cylinder, normal_plane, normal_torus, normal_ellipsoid, normal_paraboloid,\
+	normal_hyperboloid};
 	float	f; // from [0,1] => [0,100](%) of the color;
 	
 	normal = pf[obj.type](obj, hit_point, mlx);

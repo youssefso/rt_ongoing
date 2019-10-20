@@ -6,7 +6,7 @@
 /*   By: ymoukhli <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 12:06:15 by ymoukhli          #+#    #+#             */
-/*   Updated: 2019/10/15 17:45:07 by ymoukhli         ###   ########.fr       */
+/*   Updated: 2019/10/16 13:43:33 by ymoukhli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,25 @@ void	ft_stock_ellipsoid(t_obj **obj, char *str_file, char *p_obj, int *a)
 	ft_putobj(obj, n_obj);
 }
 
+void	ft_stock_hyperboloid(t_obj **obj, char *str_file, char *p_obj, int *a)
+{
+	t_obj	*n_obj;
+	t_vect	v;
+
+	n_obj = ft_new_obj(*obj, str_file);
+	n_obj->type = hyperboloid;
+	n_obj->id = *a;
+	*a = *a + 1;
+	n_obj->trs = ft_stock_vec(p_obj, "trs:", 3);
+	n_obj->pos = ft_stock_vec(p_obj, "pos:", 3);
+	n_obj->col = ft_stock_vec(p_obj, "col:", 3);
+	n_obj->dir = ft_stock_vec(p_obj, "dir:", 3);
+	ft_vec_normalize(&(n_obj->dir));
+	n_obj->nor = ft_stock_vec(p_obj, "vec:", 3);// nor have a b c value
+	n_obj->rot = ft_stock_vec(p_obj, "rot:", 3);
+	ft_putobj(obj, n_obj);
+}
+
 void	ft_stock_paraboloid(t_obj **obj, char *str_file, char *p_obj, int *a)
 {
 	t_obj	*n_obj;
@@ -175,5 +194,8 @@ t_obj	*ft_stock_obj(char *str_file)
 	p_obj = str_obj;
 	while ((p_obj = ft_strstr(p_obj + 1, "paraboloid {")) != NULL)
 		ft_stock_paraboloid(&obj, str_file, p_obj, &a);
+	p_obj = str_obj;
+	while ((p_obj = ft_strstr(p_obj + 1, "hyperboloid {")) != NULL)
+		ft_stock_hyperboloid(&obj, str_file, p_obj, &a);
 	return (obj);
 }

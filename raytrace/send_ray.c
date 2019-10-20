@@ -13,13 +13,14 @@ void	send_ray(t_config p, t_init mlx)
 	t_obj clone_obj;
 	t_vect col;
 	float distance = INFINIT;
-	float (*pf[7])(t_obj, const t_ray, float *, t_init *) = {ray_sphere, ray_cone, ray_cylinder, ray_plane, ray_torus, ray_ellipsoid, ray_paraboloid};
+	float (*pf[8])(t_obj, const t_ray, float *, t_init *) = {ray_sphere, ray_cone, ray_cylinder, ray_plane, ray_torus, ray_ellipsoid, ray_paraboloid, \
+		ray_hyperboloid};
 	float a = 0;
 
 	ray.dir = p.baked_ray;
 	ft_vec_normalize(&(ray.dir));
 	ray.pos = p.scene.cam_pos;
-	obj = p.obj; // obj now containe all objects
+	obj = p.obj;
 	while (obj != NULL)
 	{
 		if (pf[obj->type](*obj, ray, &distance, &mlx))
@@ -29,7 +30,7 @@ void	send_ray(t_config p, t_init mlx)
 		}
 		obj = obj->next;
 	}
-	//if (clone_obj.type == paraboloid && distance != INFINIT)
+	//if (clone_obj.type == hyperboloid && distance != INFINIT)
 	//	ft_light_pixel(mlx, clone_obj.col);
 	if (distance != INFINIT)
  	{
