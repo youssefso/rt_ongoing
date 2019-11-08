@@ -33,5 +33,5 @@ void	ft_light(t_obj obj, t_config p, t_vect hit_point, t_init init)
 		f = ft_light_spot(obj, p, hit_point, &ray, init);
 		ft_light_obj_loop(p.obj, obj.id, ray, &f);
 	}
-	ft_light_pixel(init, ft_vec_multr(obj.col, f));
+	ft_light_pixel(&init, ft_vec_multr(obj.col, f));
 }

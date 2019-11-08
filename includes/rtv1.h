@@ -6,7 +6,7 @@
 /*   By: nhamid <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/26 15:32:17 by nhamid            #+#    #+#             */
-/*   Updated: 2019/10/16 14:23:53 by ymoukhli         ###   ########.fr       */
+/*   Updated: 2019/11/08 16:46:47 by ymoukhli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define WIDTH 600
 # define MAP_SIZE 1
 # define INFINIT 1e4
+# define MAX HEIGHT * WIDTH * 4
 
 # define DARK 0.15f
 # include "libft.h"
@@ -122,9 +123,16 @@ typedef struct	s_init
 {
 	void			*mlx;
 	void			*win;
+	void			*win1;
+	void			*win2;
+	void			*win3;
 	void			*init;
 	void			*img;
+	void			*img2;
+	void			*img3;
 	unsigned char	*img_str;
+	unsigned char	*img_str2;
+	unsigned char	*img_str3;
 	int				x; // delete me <> for debug
 	int				y; // delete me <> for debug
 	t_vect			light_pos;
@@ -173,7 +181,7 @@ t_vect			normal_cone(const t_obj obj, const t_vect hit_point, t_init mlx);
 float			ray_cylinder(t_obj obj, const t_ray ray, float *distance, t_init *mlx);
 float			ray_plane(t_obj obj, const t_ray ray, float *distance, t_init *mlx);
 float			ft_fmin_positive(const float a, const float b);
-void			ft_light_pixel(t_init mlx, t_vect col);
+void			ft_light_pixel(t_init *mlx, t_vect col);
 void			ft_vec_normalize(t_vect *v1);
 float			ft_vec_dot(const t_vect v1, const t_vect v2);
 t_vect			ft_vec_sub(const t_vect v1, const t_vect v2);
