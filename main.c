@@ -183,13 +183,10 @@ int main(int ac, char **av)
 	mlx.p = p;
 	mlx = ft_mlx();
 	ft_rt_init(p, mlx);
-//	mlx_put_image_to_window(mlx.init, mlx.win3, mlx.img, 0, 0);
 	ft_filter(&mlx);
 	mlx_mouse_hook(mlx.win, mouse_press, &mlx);
 	mlx_hook(mlx.win, 2, 1, k_press, &mlx);
 	mlx_put_image_to_window(mlx.init, mlx.win, mlx.img, 0, 0);
-//	mlx_put_image_to_window(mlx.init, mlx.win1, mlx.img2, 0, 0);
-//	mlx_put_image_to_window(mlx.init, mlx.win2, mlx.img3, 0, 0);
 	mlx_loop(mlx.init);
 	return 0;
 }
